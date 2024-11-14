@@ -22,6 +22,10 @@ inputs:
     description: '(Linux and ''local'' method only) override arguments for the linux .run installer. For example if you don''t want samples use ["--toolkit"] double quotes required!'
     required: false
     default: '["--toolkit", "--samples"]'
+  install-path:
+    description: 'Path to install CUDA Toolkit to; Default is os specific: /usr/local if on Linux, C:\Program Files\NVIDIA GPU Computing Toolkit if on Windows'
+    required: false
+    default: ''
   use-github-cache:
     description: 'Use GitHub cache to cache downloaded installer on GitHub servers'
     required: false

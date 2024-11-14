@@ -48,6 +48,11 @@ See the [Nvidia Docs](https://docs.nvidia.com/cuda/cuda-installation-guide-linux
 
 Default: `'["--toolkit", "--samples"]'`.
 
+### `install-path`
+
+**Optional**
+The path to install to.  Default is os specific: /usr/local if on Linux, C:\Program Files\NVIDIA GPU Computing Toolkit if on Windows.
+
 ### `log-file-suffix`
 
 **Required with matrix builds**

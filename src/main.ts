@@ -22,6 +22,8 @@ async function run(): Promise<void> {
     core.debug(`Desired method: ${methodString}`)
     const linuxLocalArgs: string = core.getInput('linux-local-args')
     core.debug(`Desired local linux args: ${linuxLocalArgs}`)
+    const installPath: string = core.getInput('install-path')
+    core.debug(`Desired install path: ${installPath}`)
     const useGitHubCache: boolean = core.getBooleanInput('use-github-cache')
     core.debug(`Desired GitHub cache usage: ${useGitHubCache}`)
     const useLocalCache: boolean = core.getBooleanInput('use-local-cache')
@@ -103,7 +105,7 @@ async function run(): Promise<void> {
     }
 
     // Add CUDA environment variables to GitHub environment variables
-    const cudaPath: string = await updatePath(version)
+    const cudaPath: string = await updatePath(version, installPath)
 
     // Set output variables
     core.setOutput('cuda', cuda)

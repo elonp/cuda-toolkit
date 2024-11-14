@@ -3,14 +3,20 @@ import * as path from 'path'
 import {OSType, getOs} from './platform'
 import {SemVer} from 'semver'
 
-export async function updatePath(version: SemVer): Promise<string> {
+export async function updatePath(version: SemVer, installPath: string): Promise<string> {
   let cudaPath: string
   switch (await getOs()) {
     case OSType.linux:
-      cudaPath = `/usr/local/cuda-${version.major}.${version.minor}`
+      if (!installPath) {
+        installPath = '/usr/local';
+      }
+      cudaPath = `${installPath}/cuda-${version.major}.${version.minor}`
       break
     case OSType.windows:
-      cudaPath = `C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v${version.major}.${version.minor}`
+      if (!installPath) {
+        installPath = 'C:\\Program Files\\NVIDIA GPU Computing Toolkit';
+      }
+      cudaPath = `${installPath}\\CUDA\\v${version.major}.${version.minor}`
   }
   core.debug(`Cuda path: ${cudaPath}`)
   // Export $CUDA_PATH
